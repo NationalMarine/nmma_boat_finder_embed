@@ -1,0 +1,7 @@
+.navbar.affix {
+  position: fixed;
+}
+
+section.section {
+  overflow: visible;
+}

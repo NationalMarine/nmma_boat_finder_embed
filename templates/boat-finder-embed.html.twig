@@ -1,0 +1,21 @@
+{#
+Template for embedding the Boat Finder React app.
+
+This template uses the provided variables to render the necessary
+data attributes for the React component.
+
+Variables available:
+- paged: (bool) Whether to enable infinite scroll.
+- boat_type: (string) The type of boat to filter by.
+- boat_brand: (string) The brand of boat to filter by.
+- show_booth_info: (string) The booth info to display on boat card.
+- show_exhibitor_info: (string) The exhibitor info to display in boat card modal.
+#}
+<div data-boat-finder-component
+    data-show-id="dbcom"
+    data-infinite-scroll="{{ paged ? 'true' : 'false' }}"
+    {% if boat_type %}data-boat-type="{{ boat_type }}"{% endif %}
+    {% if boat_brand %}data-boat-brand="{{ boat_brand }}"{% endif %}
+    data-analytics-cityLocation="Atlanta"
+    data-show-booth-info="{{ show_booth_info == 'true' ? 'true' : 'false' }}" data-show-exhibitor-info="{{ show_exhibitor_info == 'true' ? 'true' : 'false' }}">
+</div>

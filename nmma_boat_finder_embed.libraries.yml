@@ -1,0 +1,8 @@
+# Library definition for the Boat Finder React app embedding.
+boat_finder_embed:
+  js:
+    js/boatFinderEmbed.js: {}
+  css:
+    theme:
+      css/boat-finder-embed-overrides.css: {}
+    component: {}

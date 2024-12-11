@@ -1,0 +1,15 @@
+nmma_boat_finder_embed.find_boats_by_brand:
+  path: "/buying/find-boats-by-brand"
+  defaults:
+    _controller: '\Drupal\nmma_boat_finder_embed\Controller\BoatFinderEmbedController::findBoatsByBrand'
+    _title: "Find Boats by Brand"
+  requirements:
+    _permission: "access content"
+
+nmma_boat_finder_embed.settings:
+  path: "/admin/config/nmma-boat-finder-embed/settings"
+  defaults:
+    _form: '\Drupal\nmma_boat_finder_embed\Form\BoatFinderEmbedSettingsForm'
+    _title: "Boat Finder React App Settings"
+  requirements:
+    _permission: "administer site configuration"

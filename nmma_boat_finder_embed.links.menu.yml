@@ -1,0 +1,6 @@
+nmma_boat_finder_embed.settings:
+  title: "Boat Finder React App Settings"
+  description: "Configure Boat Finder React app library domain and version."
+  parent: system.admin_config_services
+  route_name: nmma_boat_finder_embed.settings
+  weight: 12
