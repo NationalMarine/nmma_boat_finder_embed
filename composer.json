@@ -8,6 +8,6 @@
   "license": "proprietary",
   "homepage": "https://github.com/NationalMarine/nmma_boat_finder_embed",
   "require": {
-    "drupal/core": "^8.0"
+    "drupal/core": "^8 || ^9 || ^10"
   }
 }
