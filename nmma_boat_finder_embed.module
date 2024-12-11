@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Contains nmma_boat_finder_embed.module.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function nmma_boat_finder_embed_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the nmma_boat_finder_embed module.
+    case 'help.page.nmma_boat_finder_embed':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Custom Module to embed the NMMA Boat Finder Application') . '</p>';
+      return $output;
+
+    default:
+  }
+}

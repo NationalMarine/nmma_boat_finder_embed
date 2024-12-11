@@ -1,0 +1,5 @@
+name: "NMMA Boat Finder Embed"
+type: module
+description: "Custom Module to embed the NMMA Boat Finder Application"
+package: "NMMA"
+core_version_requirement: ^8 || ^9 || ^10
