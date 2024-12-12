@@ -12,10 +12,21 @@ Variables available:
 - show_exhibitor_info: (string) The exhibitor info to display in boat card modal.
 #}
 <div data-boat-finder-component
-    data-show-id="dbcom"
+    data-show-id="{{ show_id }}"
     data-infinite-scroll="{{ paged ? 'true' : 'false' }}"
-    {% if boat_type %}data-boat-type="{{ boat_type }}"{% endif %}
-    {% if boat_brand %}data-boat-brand="{{ boat_brand }}"{% endif %}
-    data-analytics-cityLocation="Atlanta"
-    data-show-booth-info="{{ show_booth_info == 'true' ? 'true' : 'false' }}" data-show-exhibitor-info="{{ show_exhibitor_info == 'true' ? 'true' : 'false' }}">
+    {% if boat_type %} data-boat-type="{{ boat_type }}" {% endif %}
+    {% if boat_brand %} data-boat-brand="{{ boat_brand }}" {% endif %}
+    data-show-booth-info="{{ show_booth_info ? 'true' : 'false' }}"
+    {% if city_location %} data-analytics-cityLocation="{{ city_location }}" {% endif %}
+    data-show-exhibitor-info="{{ show_exhibitor_info ? 'true' : 'false' }}"
+    {% if max_length %} data-max-length="{{ max_length }}" {% endif %}
+    {% if max_price %} data-max-price="{{ max_price }}" {% endif %}
+    {% if show_color %} data-show-color="{{ show_color }}" {% endif %}
+    {% if modal_sponsor_tagline %} data-boat-modal-sponsor-tagline="{{ modal_sponsor_tagline }}" {% endif %}
+    {% if modal_sponsor_image %} data-boat-modal-sponsor-image="{{ modal_sponsor_image }}" {% endif %}
+    {% if modal_sponsor_link %} data-boat-modal-sponsor-link="{{ modal_sponsor_link }}" {% endif %}
+    {% if rows_between_sponsor_cards %} data-sponsor-card-rows-between="{{ rows_between_sponsor_cards }}" {% endif %}
+    {% if sponsor_card_link %} data-sponsor-card-link="{{ sponsor_card_link }}" {% endif %}
+    {% if sponsor_card_image %} data-sponsor-card-image="{{ sponsor_card_image }}" {% endif %}
+>
 </div>
