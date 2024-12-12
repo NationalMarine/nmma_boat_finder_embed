@@ -86,7 +86,7 @@ final class BoatFinderEmbedPreprocessor {
     if (!empty($brand)) {
       $query['boat-brand'] = $brand;
     }
-    $url = Url::fromRoute('nmma_boat_finder.find_boats_by_brand', [], ['query' => $query]);
+    $url = Url::fromRoute('nmma_boat_finder_embed.find_boats_by_brand', [], ['query' => $query]);
     return $url->toString();
   }
 
