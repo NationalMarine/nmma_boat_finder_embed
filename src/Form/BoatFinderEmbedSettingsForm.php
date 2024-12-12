@@ -48,7 +48,144 @@ class BoatFinderEmbedSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('boat_finder_version') ?: '1.0.0',
       '#required' => TRUE,
     ];
+    $form['show_id'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Set show ID'),
+      '#description' => $this->t('Show boats from the specified show ID.'),
+      '#default_value' => $config->get('show_id') ?: 'dbcom',
+      '#required' => TRUE,
+    ];
+    $form['infinite_scroll'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable infinite scrolling'),
+      '#description' => $this->t('When checked, the application will load more boats as the user scrolls down the page. When false, a Load More button will be displayed at the bottom of the page.'),
+      '#default_value' => $config->get('infinite_scroll') ?: FALSE,
+    ];
+    $form['max_length'] = [
+      '#type' => 'number',
+      '#min' => 1,
+      '#size' => 1,
+      '#title' => $this->t('Set maximum boat length'),
+      '#description' => $this->t('Boats that exceed this length (in feet) will not be included in results. Default: 260.'),
+      '#default_value' => $config->get('max_length') ?: '260',
+    ];
+    $form['max_price'] = [
+      '#type' => 'number',
+      '#min' => 1,
+      '#size' => 1,
+      '#title' => $this->t('Set maximum boat price'),
+      '#description' => $this->t('Boats that exceed this price will not be included in results.'),
+      '#default_value' => $config->get('max_price') ?: '1600000',
+    ];
+    $form['boat_type'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Set boat type'),
+      '#description' => $this->t('When provided, restricts the application to only show boats of the specified type.'),
+      '#default_value' => $config->get('boat_type') ?: '',
+    ];
+    $form['boat_brand'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Set boat brand'),
+      '#description' => $this->t('When provided, restricts the application to only show boats of the specified brand.'),
+      '#default_value' => $config->get('boat_brand') ?: '',
+    ];
+    $form['show_color'] = [
+      '#type' => 'color',
+      '#title' => $this->t('Set show color'),
+      '#description' => [
+        '#type' => 'inline_template',
+        '#template' => 'Provided as a hex color value (e.g. #adadad). When provided, it will set the color/accent of the following elements: <ul>
+          <li>filter</li>
+          <li>boat price</li>
+          <li>social icons</li>
+          <li>description</li>
+          <li>booth location</li>
+          <li>filter fill color</li>
+          <li>reset text color</li>
+        </ul>',
+      ],
+      '#default_value' => $config->get('show_color') ?: '#adadad',
+    ];
+    $form['modal_sponsor_tagline'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Set sponsor tag line'),
+      '#description' => $this->t("Set the sponsor tag line. Default: Get on Board with America's #1 Boat Insurer"),
+      '#default_value' => $config->get('modal_sponsor_tagline') ?: '',
+    ];
+    $form['modal_sponsor_tagline'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Set the sponsor tagline'),
+      '#description' => $this->t("Set the sponsor image. Default: Get on Board with America's #1 Boat Insurer"),
+      '#default_value' => $config->get('modal_sponsor_tagline') ?: '',
+    ];
+    $form['modal_sponsor_image'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Set the sponsor image'),
+      '#description' => $this->t("Set the sponsor image. Default: ") . $this->defaultLinks('Sponsor image', 'https://cdn.prod.website-files.com/61d73719ecbb6d7c722e61cb/6526ccc2a52bc0e9c7dddffe_progressive.svg'),
+      '#default_value' => $config->get('modal_sponsor_image') ?: '',
+    ];
+    $form['modal_sponsor_link'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Set the sponsor link'),
+      '#description' => $this->t("Set the sponsor link. Default: ") . $this->defaultLinks('Sponsor link', 'https://www.discoverboating.com/progressive-exclusive-insurance-partner'),
+      '#default_value' => $config->get('modal_sponsor_link') ?: '',
+    ];
+    $form['rows_between_sponsor_cards'] = [
+      '#type' => 'number',
+      '#min' => 1,
+      '#size' => 1,
+      '#title' => $this->t('Set rows between sponsor cards'),
+      '#description' => $this->t('Set the number of rows between sponsor cards.'),
+      '#default_value' => $config->get('rows_between_sponsor_cards') ?: '10',
+    ];
+    $form['sponsor_card_link'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Set the sponsor card link'),
+      '#description' => $this->t("Set the sponsor card link. Default: ") . $this->defaultLinks('Sponsor card link', 'https://www.progressive.com/lp/boat-nmma/?code=6739700004'),
+      '#default_value' => $config->get('sponsor_card_link') ?: '',
+    ];
+    $form['sponsor_card_image'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Set the sponsor card image'),
+      '#description' => $this->t("Set the sponsor card image. Default: ") . $this->defaultLinks('Sponsor card image', 'https://cdn.prod.website-files.com/61d73719ecbb6d7c722e61cb/657a3f685428828d55e8813b_Flo-ad-progressive-boat-finder.jpg'),
+      '#default_value' => $config->get('sponsor_card_image') ?: '',
+    ];
+    $form['city_location'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Set analytics cityLocation'),
+      '#description' => $this->t("Push cityLocation value to <code>dataLayer</code> event."),
+      '#default_value' => $config->get('city_location') ?: '',
+    ];
+    $form['show_booth_info'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable showing booth information'),
+      '#description' => $this->t('When checked, will show the show booth card info.'),
+      '#default_value' => $config->get('show_booth_info') ?: FALSE,
+    ];
+    $form['show_exhibitor_info'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Enable exhibitor booth information'),
+      '#description' => $this->t('When checked, will show the show booth exhibitor info.'),
+      '#default_value' => $config->get('show_exhibitor_info') ?: FALSE,
+    ];
     return parent::buildForm($form, $form_state);
+  }
+
+  /**
+   * Returns a string containing a link to a default value.
+   *
+   * @param string $text
+   *   The text to be displayed in the link.
+   * @param string $link
+   *   The link URL.
+   *
+   * @return string
+   *   The link as a string.
+   */
+  private function defaultLinks(string $text, string $link): string {
+    $url = Url::fromUri($link);
+    $link = Link::fromTextAndUrl($text, $url);
+    return $link->toString();
   }
 
   /**
@@ -80,9 +217,26 @@ class BoatFinderEmbedSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    $all_values = $form_state->cleanValues()->getValues();
     $this->configFactory->getEditable('nmma_boat_finder_embed.settings')
-      ->set('boat_finder_domain', $form_state->getValue('boat_finder_domain'))
-      ->set('boat_finder_version', $form_state->getValue('boat_finder_version'))
+      ->set('boat_finder_domain', $all_values['boat_finder_domain'])
+      ->set('boat_finder_version', $all_values['boat_finder_version'])
+      ->set('show_id', $all_values['show_id'])
+      ->set('infinite_scroll', $all_values['infinite_scroll'])
+      ->set('max_length', $all_values['max_length'])
+      ->set('max_price', $all_values['max_price'])
+      ->set('boat_type', $all_values['boat_type'])
+      ->set('boat_brand', $all_values['boat_brand'])
+      ->set('show_color', $all_values['show_color'])
+      ->set('modal_sponsor_tagline', $all_values['modal_sponsor_tagline'])
+      ->set('modal_sponsor_image', $all_values['modal_sponsor_image'])
+      ->set('modal_sponsor_link', $all_values['modal_sponsor_link'])
+      ->set('rows_between_sponsor_cards', $all_values['rows_between_sponsor_cards'])
+      ->set('sponsor_card_link', $all_values['sponsor_card_link'])
+      ->set('sponsor_card_image', $all_values['sponsor_card_image'])
+      ->set('city_location', $all_values['city_location'])
+      ->set('show_booth_info', $all_values['show_booth_info'])
+      ->set('show_exhibitor_info', $all_values['show_exhibitor_info'])
       ->save();
     parent::submitForm($form, $form_state);
   }

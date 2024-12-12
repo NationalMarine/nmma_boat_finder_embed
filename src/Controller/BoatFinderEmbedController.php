@@ -2,15 +2,30 @@
 
 namespace Drupal\nmma_boat_finder_embed\Controller;
 
-use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Controller for rendering the boat finder with query filters.
  */
-class BoatFinderEmbedController extends ControllerBase {
+class BoatFinderEmbedController extends ControllerBase implements ContainerInjectionInterface {
+  /**
+   * The config factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    $instance = parent::create($container);
+    $instance->configFactory = $container->get('config.factory');
+    return $instance;
+  }
 
   /**
    * Renders the boat finder React app with filters from the query parameters.
@@ -22,32 +37,46 @@ class BoatFinderEmbedController extends ControllerBase {
    *   A render array with the boat finder element.
    */
   public function findBoatsByBrand(Request $request): array {
-    // Get query parameters.
-    $boat_type = $request->query->get('boat-type', '');
-    $boat_brand = $request->query->get('boat-brand', '');
-    $analytics_citylocation = $request->query->get('analyticsCitylocation', '');
+    $boat_finder_config = $this->configFactory->get('nmma_boat_finder_embed.settings');
+
+    $show_id = $boat_finder_config->get('show_id');
+    $infinite_scroll = $boat_finder_config->get('infinite_scroll');
+    $max_length = $boat_finder_config->get('max_length');
+    $max_price = $boat_finder_config->get('max_price');
+    $boat_type = $boat_finder_config->get('boat_type');
+    $boat_brand = $boat_finder_config->get('boat_brand');
+    $show_color = $boat_finder_config->get('show_color');
+    $modal_sponsor_tagline = $boat_finder_config->get('modal_sponsor_tagline');
+    $modal_sponsor_image = $boat_finder_config->get('modal_sponsor_image');
+    $modal_sponsor_link = $boat_finder_config->get('modal_sponsor_link');
+    $rows_between_sponsor_cards = $boat_finder_config->get('rows_between_sponsor_cards');
+    $sponsor_card_link = $boat_finder_config->get('sponsor_card_link');
+    $sponsor_card_image = $boat_finder_config->get('sponsor_card_image');
+    $city_location = $boat_finder_config->get('city_location');
+    $show_booth_info = $boat_finder_config->get('show_booth_info');
+    $show_exhibitor_info = $boat_finder_config->get('show_exhibitor_info');
 
     // Build the render array using the custom render element.
     $build = [
       '#type' => 'boat_finder_embed',
-      '#paged' => TRUE,
+      '#paged' => $infinite_scroll,
       '#boat_type' => $boat_type,
       '#boat_brand' => $boat_brand,
-      '#analytics_citylocation' => $analytics_citylocation,
+      '#city_location' => $city_location,
+      '#show_id' => $show_id,
+      '#max_length' => $max_length,
+      '#max_price' => $max_price,
+      '#show_color' => $show_color,
+      '#modal_sponsor_tagline' => $modal_sponsor_tagline,
+      '#modal_sponsor_image' => $modal_sponsor_image,
+      '#modal_sponsor_link' => $modal_sponsor_link,
+      '#rows_between_sponsor_cards' => $rows_between_sponsor_cards,
+      '#sponsor_card_link' => $sponsor_card_link,
+      '#sponsor_card_image' => $sponsor_card_image,
+      '#show_booth_info' => $show_booth_info,
+      '#show_exhibitor_info' => $show_exhibitor_info,
     ];
 
-    // Set cache metadata.
-    $cache_metadata = new CacheableMetadata();
-    // Cache this response based on the query parameters (boat type and brand).
-    $cache_metadata->setCacheContexts([
-      'url.query_args:boat-type',
-      'url.query_args:boat-brand',
-      'url.query_args:analyticsCitylocation',
-    ]);
-    // Optionally set a cache max-age (0 for no cache, or a time limit in seconds).
-    $cache_metadata->setCacheMaxAge(CacheBackendInterface::CACHE_PERMANENT);
-    // Attach the cache metadata to the render array.
-    $cache_metadata->applyTo($build);
     // Return the render array.
     return $build;
   }

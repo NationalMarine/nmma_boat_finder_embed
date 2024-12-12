@@ -2,6 +2,7 @@
 
 /**
  * @file
+ * Contains module nmma_boat_finder_embed.
  */
 
 use Drupal\Core\Asset\AttachedAssetsInterface;
@@ -45,6 +46,16 @@ function nmma_boat_finder_embed_theme() {
         'paged' => FALSE,
         'show_booth_info' => FALSE,
         'show_exhibitor_info' => FALSE,
+        'max_length' => NULL,
+        'max_price' => NULL,
+        'show_color' => NULL,
+        'modal_sponsor_tagline' => NULL,
+        'modal_sponsor_image' => NULL,
+        'modal_sponsor_link' => NULL,
+        'rows_between_sponsor_cards' => NULL,
+        'sponsor_card_link' => NULL,
+        'sponsor_card_image' => NULL,
+        'city_location' => NULL,
       ],
     ],
   ];
@@ -59,11 +70,6 @@ function nmma_boat_finder_embed_theme() {
  * If those conditions are met, it delegates further processing to the
  * BoatFinderEmbedPreprocessor class to alter the row output, such as appending
  * custom links for filtering boats by brand and type.
- *
- * @param array $variables
- *   An associative array containing various properties of the Views field,
- *   including the 'view', 'field', and 'row' elements, which store data
- *   about the current field and its related row of data.
  */
 function nmma_boat_finder_embed_preprocess_views_view_field(array &$variables): void {
   if ($variables['view']->storage->id() == 'boatfinder_views' && $variables['field']->field == 'name' && $variables['field']->relationship == 'field_brand_boat_type_taxonomy_term_field_data') {
@@ -79,14 +85,6 @@ function nmma_boat_finder_embed_preprocess_views_view_field(array &$variables): 
  * modifications of the library's properties or dependencies before
  * they are included in the page.
  *
- * @param array &$libraries
- *   An associative array of library definitions where keys are
- *   library names and values are the library properties (such as
- *   dependencies, version, and files).
- * @param string $extension
- *   The name of the module or theme that is defining the library. This
- *   will be 'nmma_boat_finder' in this case.
- *
  * @see hook_library_info_alter()
  * @see \Drupal\nmma_boat_finder_embed\BoatFinderEmbedLibraryAlter::libraryInfoAlter()
  */
@@ -101,14 +99,14 @@ function nmma_boat_finder_embed_library_info_alter(array &$libraries, $extension
 /**
  * Implements hook_css_alter().
  *
- * Alters the css to change group for boat_finder_embed css. As by default Drupal sets CSS_AGGREGATE_DEFAULT for
- * non-theme css files. This is needed so boat_finder_embed library css is ordered correctly.
+ * Alters the css to change group for boat_finder_embed css.
+ * As by default Drupal sets CSS_AGGREGATE_DEFAULT for
+ * non-theme css files. This is needed so boat_finder_embed library css
+ * is ordered correctly.
  *
  * @see \Drupal\Core\Asset\AssetResolver::getCssAssets()
  * @see \Drupal\nmma_boat_finder_embed\BoatFinderEmbedLibraryAlter::cssAlter()
- *
- * @return void
  */
-function nmma_boat_finder_embed_css_alter(&$css, AttachedAssetsInterface $assets, LanguageInterface $language) {
+function nmma_boat_finder_embed_css_alter(&$css, AttachedAssetsInterface $assets, LanguageInterface $language): void {
   \Drupal::classResolver(BoatFinderEmbedLibraryAlter::class)->cssAlter($css);
 }
