@@ -286,12 +286,16 @@ class BoatFinderEmbedSettingsForm extends ConfigFormBase {
     $js_url = "{$domain}/boat-finder-component-{$version}.js";
     $css_url = "{$domain}/boat-finder-component-{$version}.css";
 
+    // Construct the URL for the Boat Finder page.
+    $route_url = Url::fromRoute('nmma_boat_finder_embed.find_boats_by_brand');
+    $boad_finder_url = \Drupal::request()->getSchemeAndHttpHost() . $route_url->toString();
     // Build the markup for the library links.
     return [
       '#type' => 'markup',
-      '#markup' => $this->t('<h6>Configured Library:</h6><ol><li><b>JavaScript:</b> @js_link</li><li><b>CSS:</b> @css_link</li></ol>', [
+      '#markup' => $this->t('<h6>Boat Finder Page:</h6><p> @boad_finder_url </p><h6>Configured Library:</h6><ol><li><b>JavaScript:</b> @js_link</li><li><b>CSS:</b> @css_link</li></ol>', [
         '@js_link' => Link::fromTextAndUrl($js_url, Url::fromUri($js_url))->toString(),
         '@css_link' => Link::fromTextAndUrl($css_url, Url::fromUri($css_url))->toString(),
+        '@boad_finder_url' => Link::fromTextAndUrl($boad_finder_url, Url::fromUri($boad_finder_url))->toString(),
       ]),
     ];
   }
