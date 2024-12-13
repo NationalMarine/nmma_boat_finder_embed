@@ -5,8 +5,6 @@
  * Contains module nmma_boat_finder_embed.
  */
 
-use Drupal\Core\Asset\AttachedAssetsInterface;
-use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\nmma_boat_finder_embed\BoatFinderEmbedLibraryAlter;
 use Drupal\nmma_boat_finder_embed\BoatFinderEmbedPreprocessor;
@@ -107,6 +105,6 @@ function nmma_boat_finder_embed_library_info_alter(array &$libraries, $extension
  * @see \Drupal\Core\Asset\AssetResolver::getCssAssets()
  * @see \Drupal\nmma_boat_finder_embed\BoatFinderEmbedLibraryAlter::cssAlter()
  */
-function nmma_boat_finder_embed_css_alter(&$css, AttachedAssetsInterface $assets, LanguageInterface $language): void {
+function nmma_boat_finder_embed_css_alter(&$css): void {
   \Drupal::classResolver(BoatFinderEmbedLibraryAlter::class)->cssAlter($css);
 }
