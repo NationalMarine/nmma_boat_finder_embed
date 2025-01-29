@@ -1,5 +1,5 @@
 nmma_boat_finder_embed.find_boats_by_brand:
-  path: "/buying/find-boats-by-brand"
+  path: "/boat-finder"
   defaults:
     _controller: '\Drupal\nmma_boat_finder_embed\Controller\BoatFinderEmbedController::findBoatsByBrand'
     _title: "Find Boats by Brand"
