@@ -38,7 +38,7 @@ class BoatFinderEmbedSettingsForm extends ConfigFormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Boat Finder App Domain'),
       '#description' => $this->t('Enter the domain where the Boat Finder JavaScript and CSS files are hosted.'),
-      '#default_value' => $config->get('boat_finder_domain') ?: 'https://live-nmma-boat-finder-node.appa.pantheon.site',
+      '#default_value' => $config->get('boat_finder_domain') ?: 'https://live-boatfinderreactapp.appa.pantheon.site',
       '#required' => TRUE,
     ];
     $form['boat_finder_version'] = [
