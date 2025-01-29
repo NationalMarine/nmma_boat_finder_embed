@@ -287,7 +287,7 @@ class BoatFinderEmbedSettingsForm extends ConfigFormBase {
     $css_url = "{$domain}/boat-finder-component-{$version}.css";
 
     // Construct the URL for the Boat Finder page.
-    $route_url = Url::fromRoute('nmma_boat_finder_embed.find_boats_by_brand');
+    $route_url = Url::fromRoute('nmma_boat_finder_embed.boat_finder');
     $boad_finder_url = \Drupal::request()->getSchemeAndHttpHost() . $route_url->toString();
     // Build the markup for the library links.
     return [
