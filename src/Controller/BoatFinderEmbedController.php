@@ -36,7 +36,7 @@ class BoatFinderEmbedController extends ControllerBase implements ContainerInjec
    * @return array
    *   A render array with the boat finder element.
    */
-  public function findBoatsByBrand(Request $request): array {
+  public function boatFinder(Request $request): array {
     $boat_finder_config = $this->configFactory->get('nmma_boat_finder_embed.settings');
 
     $show_id = $boat_finder_config->get('show_id');
