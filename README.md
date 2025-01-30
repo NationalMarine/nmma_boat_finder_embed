@@ -18,4 +18,4 @@ To configure the app:
 
 ## Accessing the App
 Once configured, the app will be available at:  
-`https://YOUR-SITE-NAME/buying/find-boats-by-brand`
+`https://YOUR-SITE-NAME/boat-finder`

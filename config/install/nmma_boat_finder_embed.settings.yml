@@ -1,4 +1,4 @@
-boat_finder_domain: "https://live-nmma-boat-finder-node.appa.pantheon.site"
+boat_finder_domain: "https://live-boatfinderreactapp.appa.pantheon.site"
 boat_finder_version: "1.0.0"
 show_id: ""
 infinite_scroll: 0
