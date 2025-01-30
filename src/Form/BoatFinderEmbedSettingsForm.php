@@ -38,7 +38,7 @@ class BoatFinderEmbedSettingsForm extends ConfigFormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Boat Finder App Domain'),
       '#description' => $this->t('Enter the domain where the Boat Finder JavaScript and CSS files are hosted.'),
-      '#default_value' => $config->get('boat_finder_domain') ?: 'https://live-nmma-boat-finder-node.appa.pantheon.site',
+      '#default_value' => $config->get('boat_finder_domain') ?: 'https://live-boatfinderreactapp.appa.pantheon.site',
       '#required' => TRUE,
     ];
     $form['boat_finder_version'] = [
@@ -287,7 +287,7 @@ class BoatFinderEmbedSettingsForm extends ConfigFormBase {
     $css_url = "{$domain}/boat-finder-component-{$version}.css";
 
     // Construct the URL for the Boat Finder page.
-    $route_url = Url::fromRoute('nmma_boat_finder_embed.find_boats_by_brand');
+    $route_url = Url::fromRoute('nmma_boat_finder_embed.boat_finder');
     $boad_finder_url = \Drupal::request()->getSchemeAndHttpHost() . $route_url->toString();
     // Build the markup for the library links.
     return [
