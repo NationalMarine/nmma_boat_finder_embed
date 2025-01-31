@@ -20,14 +20,14 @@ final class BoatFinderEmbed extends CKEditorPluginBase {
    * {@inheritdoc}
    */
   public function getFile() {
-    return $this->getModulePath('nmma_boat_finder_embed') . '/js/ckeditor/plugin.js';
+    return dirname(__DIR__, 3) . '/js/ckeditor/plugin.js';
   }
 
   /**
    * {@inheritdoc}
    */
   public function getButtons() {
-    $path = $this->getModulePath('nmma_boat_finder_embed') . '/js/ckeditor';
+    $path = dirname(__DIR__, 3) . '/js/ckeditor';
     return [
       'boat_finder_embed' => [
         'id' => 'boat_finder_embed',
